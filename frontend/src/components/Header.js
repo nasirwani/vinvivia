@@ -1,6 +1,7 @@
 import './Header.css';
 import { DownOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
+import { Button } from 'antd';
 const Header = () => {
     return (
         <div className='header-container'>
@@ -18,6 +19,28 @@ const Header = () => {
                         <DownOutlined />
                     </span>
                 </h5>
+
+                <span className='log-btn'>
+                    <Link to='/login'>
+                        <Button type='button' style={{
+                            display: 'inline-block',
+                            width: '7%',
+                            marginLeft: '1%'
+                        }}>Login</Button>
+                    </Link>
+                </span>
+
+                <span className='reg-btn'>
+                    <Link to='/register'>
+                        <Button type='button' 
+                        style={{
+                            display: 'inline-block',
+                            width: '7%',
+                            marginLeft: '1%'
+                        }}>Register</Button>
+                    </Link>
+                </span>
+
 
                 <div className='header-user-info'>
                     <div className='user-logo'>
