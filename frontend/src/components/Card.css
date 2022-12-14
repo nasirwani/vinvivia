@@ -1,7 +1,9 @@
 .card-container {
-    width: 80%;
+   width: 80%; 
     margin: 0 auto;
-    height: auto;
+    height: auto; 
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .card1 {

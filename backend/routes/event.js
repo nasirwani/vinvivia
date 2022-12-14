@@ -17,26 +17,48 @@ router.get('/allevents',requireLogin, async (req, res)=>{
     }
 
 })
-router.post("/createevent", requireLogin, async (req, res) => {
+//final
+// router.post("/createevent", requireLogin,async (req, res) => {
+//     try{
+//         const {eventName,eventFormat,tenantName} = req.body;
+//         if (!eventName || !eventFormat || !tenantName) {
+//           return res.status(400).json({ error: "please fill all required fields" });
+//         }
+//         const posts = new Events({ eventName, eventFormat, tenantName,postedBy:req.user,...req.body})
+//         ;
+//         req.user.password=undefined
+   
+//         await posts.save();
+//         return res.status(200).json(posts);
+      
+//     }
+//      catch(err){
+//         return res.status(400).json({ error: err });}
+//   });
+router.post("/createevent",async (req, res) => {
     try{
-        const {eventname,description,image ,eventstatus} = req.body;
-        console.log(eventstatus)
-        if (!eventname || !description || !image) {
+        const {eventName,eventFormat,tenantName} = req.body;
+        if (!eventName || !eventFormat || !tenantName) {
           return res.status(400).json({ error: "please fill all required fields" });
         }
-        const posts = new Events({ eventname, description, image,postedBy:req.user,...req.body})
+        const posts = new Events({ eventName, eventFormat, tenantName,...req.body})
         ;
-        req.user.password=undefined
+        // req.user.password=undefined
    
         await posts.save();
-        return res.status(200).json(posts);
+        return res.status(200).json({message:'event created successfully',posts});
       
     }
      catch(err){
         return res.status(400).json({ error: err });}
   });
-router.get('/myevents',requireLogin,async(req,res)=>{
-    const event = await Events.find({postedBy:req.user._id}).populate('postedBy','_id name');
+// router.get('/myevents',requireLogin,async(req,res)=>{
+//     const event = await Events.find({postedBy:req.user._id}).populate('postedBy','_id name');
+//     res.status(200).json(event);
+
+// })
+router.get('/myevents',async(req,res)=>{
+    const event = await Events.find()
     res.status(200).json(event);
 
 })
