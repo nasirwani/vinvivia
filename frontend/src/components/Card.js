@@ -1,27 +1,54 @@
 import './Card.css'
+import { useState,useEffect } from 'react';
+import Moment from 'react-moment';
+import moment from "moment";
+// import 'moment-timezone';
+
+
 const Card = () => {
+    
+    const [data,setData] = useState([]);
+    
+    useEffect(()=>{
+        (async () => {
+            const users = await fetch('/myevents',{
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const usersData = await users.json();
+            
+            setData(usersData);
+
+          })();
+        
+    },[data])
     return (
 
         <div className='card-container'>
-
-            <div class="card1">
+            {data.map((data,index) =>{
+                return(
+                    <div class="card1" key={index}>
                 <div class="card-image">
                     <img src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg" alt='' />
                     <button type='click'>PUBLISHD</button>
                 </div>
                 <div class="card-content">
-                    <p>Music and mountain</p>
-                    <h4>Bayer and Sons</h4>
+                    <p>{data.tenantName}</p>
+                    <h4>{data.eventName}</h4>
 
                     <div className='card-date'>
                         <div className='start'>
                             <div>Start</div>
-                            <div>Mon, 19 Sep 2022 16:57</div>
+                            
+                            <div>{moment(data.startDate).format("MM DD YYYY, h:mm:ss")}</div>
+                           
                         </div>
 
                         <div className='end'>
                             <div>End</div>
-                            <div>Fri, 30 Sep 2022 16:57</div>
+                            <div>{moment(data.endDate).format("MM DD YYYY, h:mm:ss")}</div>
                         </div>
                     </div>
 
@@ -34,8 +61,12 @@ const Card = () => {
                 </div>
             </div>
 
+                )
+            })}
 
-            <div class="card2">
+            
+
+            {/* <div class="card2">
                 <div class="card-image">
                     <img src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg" alt='' />
                     <button type='click'>PUBLISHD</button>
@@ -62,9 +93,9 @@ const Card = () => {
                         <div className='email'>admin@vinivia.com</div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
-            <div class="card3">
+            {/* <div class="card3">
                 <div class="card-image">
                     <img src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg" alt='' />
                     <button type='click'>PUBLISHD</button>
@@ -92,7 +123,7 @@ const Card = () => {
                         <div className='email'>admin@vinivia.com</div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     )
