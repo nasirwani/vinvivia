@@ -1,0 +1,158 @@
+.card-container {
+    width: 80%;
+    margin: 0 auto;
+    height: auto;
+}
+
+.card1 {
+    margin-top: 20px;
+    width: 28%;
+    display: inline-block;
+    padding: 10px;
+    background-color: white;
+}
+
+.card1 img {
+    width: 300px;
+    margin-top: 5px;
+    background-size: cover;
+    height: 20vh;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.card1 button {
+    width: 25%;
+    background-color: rgb(35, 155, 35);
+    color: white;
+    font-size: 10px;
+    height: 15px;
+    padding-top: 2px;
+    margin-right: 15px;
+}
+
+.card1 p {
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+/* --------------------------------------- */
+.card2 {
+    margin-top: 20px;
+    width: 28%;
+    display: inline-block;
+    padding: 10px;
+    background-color: white;
+    margin-left: 5%;
+}
+
+.card2 img {
+    width: 300px;
+    margin-top: 5px;
+    background-size: cover;
+    height: 20vh;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+.card2 button {
+    width: 25%;
+    background-color: rgb(35, 155, 35);
+    color: white;
+    font-size: 10px;
+    height: 15px;
+    padding-top: 2px;
+    margin-right: 15px;
+}
+
+.card2 p {
+    font-size: 12px;
+    margin-top: 20px;
+
+}
+
+/* ------------------------- */
+.card3 {
+    margin-top: 20px;
+    width: 28%;
+    display: inline-block;
+    padding: 10px;
+    background-color: white;
+    margin-left: 5%;
+}
+
+
+.card3 img {
+    width: 300px;
+    margin-top: 5px;
+    background-size: cover;
+    height: 20vh;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+
+.card3 button {
+    width: 25%;
+    background-color: rgb(35, 155, 35);
+    color: white;
+    font-size: 10px;
+    height: 15px;
+    padding-top: 2px;
+    margin-right: 15px;
+}
+
+.card3 p {
+    font-size: 12px;
+    margin-top: 20px;
+
+}
+
+/* ------------------------------ */
+
+h4 {
+    color: rgb(51, 37, 61);
+}
+
+
+.start,
+.end {
+    display: inline-block;
+}
+
+.start {
+    float: left;
+}
+
+.end {
+    float: right;
+}
+
+.card-date {
+    font-size: 12px;
+}
+
+.card-content {
+    margin-bottom: 10px;
+}
+
+.icons {
+    display: inline-block;
+}
+
+.details {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.name {
+    margin-top: 20px;
+    font-size: 15px;
+    /* font-size: small; */
+}
+
+.email {
+    font-size: smaller;
+    color: grey;
+
+}
