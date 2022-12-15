@@ -1,15 +1,11 @@
 const mongoose = require("mongoose");
 const eventsSchema = new mongoose.Schema(
   {
-    eventname: {
+    eventName: {
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
-    image: {
+    eventLogo: {
       type: String,
       default: "no photo",
     },
@@ -21,26 +17,30 @@ const eventsSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    Duration: {
+   eventDuration: {
       type: Number,
       default: 0,
     },
-    eventformat: {
+    eventFormat: {
       type: String,
 
-      enum: {
-        values: ["online", "offline", "hybrid"],
-      },
+      // enum: {
+      //   values: ["Online", "in-Person", "Hybrid"],
+      // },
     },
     location: {
       type: String,
       default: "no location",
     },
+    tenantName: {
+      type: String,
+      default: "no tenant name",
+    },
     eventtype: {
       type: String,
-      enum: {
-        values: ["festival", "music", "fashion", "government"],
-      },
+      // enum: {
+      //   values: ["festival", "music", "fashion", "government"],
+      // },
       default: "festival",
     },
     ispublic: {
