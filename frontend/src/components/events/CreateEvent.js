@@ -2,19 +2,34 @@ import React, { Fragment, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Drawer, Form, Input, Button, Select, Checkbox, Switch, DatePicker, Upload } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 const CreateEvent = ({ show, handleOnClose }) => {
     const [form] = Form.useForm();
+    // const [formClose , setFormClose] = useState(false)
 
     const onFinish = (values) => {
         console.log('Success:', values);
+        // setFormClose(true)
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
+
+    const tostifyForCreatingEvent = () => {
+        toast("Event Created Sucessful", { position: 'top-right' })
+
+    }
+    
+    const tostifyForCancellingEvent = () => {
+        toast("Event Cancelled", { position: 'top-right' })
+
+    }
 
     return (
         <Drawer
@@ -52,9 +67,9 @@ const CreateEvent = ({ show, handleOnClose }) => {
                         placeholder="Please Select (optional)"
                         allowClear={true}
                     >
-                        <Option value="male">Online</Option>
-                        <Option value="female">Hybrid</Option>
-                        <Option value="other">In-Person</Option>
+                        <Option value="Online">Online</Option>
+                        <Option value="Hybrid">Hybrid</Option>
+                        <Option value="In-Person">In-Person</Option>
                     </Select>
                 </Form.Item>
 
@@ -67,14 +82,14 @@ const CreateEvent = ({ show, handleOnClose }) => {
                         placeholder="Please Select (optional)"
                         allowClear
                     >
-                        <Option value="male">Festival</Option>
-                        <Option value="female">Auction</Option>
-                        <Option value="other">Food and Drink</Option>
-                        <Option value="other">Fashion and Beauty</Option>
-                        <Option value="other">Music</Option>
-                        <Option value="other">School Festival</Option>
-                        <Option value="other">Healty and Wellness</Option>
-                        <Option value="other">Other</Option>
+                        <Option value="Festival">Festival</Option>
+                        <Option value="Auction">Auction</Option>
+                        <Option value="Food and Drink">Food and Drink</Option>
+                        <Option value="Fashion and Beauty">Fashion                                                                                                                                                                                                                                                                                                                                                                                                                                                              and Beauty</Option>
+                        <Option value="Music">Music</Option>
+                        <Option value="School Festival">School Festival</Option>
+                        <Option value="Healty and Wellness">Healty and Wellness</Option>
+                        <Option value="Other">Other</Option>
                     </Select>
                 </Form.Item>
 
@@ -112,11 +127,11 @@ const CreateEvent = ({ show, handleOnClose }) => {
                         placeholder="(GMT+05:00) Asia/Ashgabat"
                         allowClear
                     >
-                        <Option value="male">(GMT+05:00) Asia/Ashgabat</Option>
-                        <Option value="female">(GMT+05:00) Asia/Ashkhabat</Option>
-                        <Option value="other">(GMT+07:00) Asia/Bangkok</Option>
-                        <Option value="other">(GMT+04:00) Asia/Dubai</Option>
-                        <Option value="other">(GMT+05:30) Asia/culkatta</Option>
+                        <Option value="(GMT+05:00) Asia/Ashgabat">(GMT+05:00) Asia/Ashgabat</Option>
+                        <Option value="(GMT+05:00) Asia/Ashkhabat">(GMT+05:00) Asia/Ashkhabat</Option>
+                        <Option value="(GMT+07:00) Asia/Bangkok">(GMT+07:00) Asia/Bangkok</Option>
+                        <Option value="(GMT+04:00) Asia/Dubai">(GMT+04:00) Asia/Dubai</Option>
+                        <Option value="(GMT+05:30) Asia/culkatta">(GMT+05:30) Asia/culkatta</Option>
                     </Select>
                 </Form.Item>
 
@@ -180,23 +195,26 @@ const CreateEvent = ({ show, handleOnClose }) => {
                 </Form.Item>
 
 
-
-
-                <Form.Item shouldUpdate >
+                <Form.Item shouldUpdate  >
                     {() => (
-                        <Fragment>
+                        <Fragment destroyOnClose={true}>
                             <Button
                                 style={{ width: '25%', padding: '5px' }}
                                 type="primary"
                                 htmlType="submit"
+                                onClick={tostifyForCreatingEvent}
                             // disabled={!form.isFieldsTouched(true) || form.getFieldsError().filter(({ errors }) => errors.length).length}
                             >Create
+                                <ToastContainer />
+
                             </Button>
 
                             <Button
                                 style={{ width: '25%', padding: '5px', marginLeft: '10px' }}
                                 htmlType="button"
-                                onClick={() => form.resetFields()}
+                            // onClick={() => form.resetFields()}
+                            // onClick={handleClose} 
+                            onClick={tostifyForCancellingEvent}      
                             > Cancel
                             </Button>
                         </Fragment>
