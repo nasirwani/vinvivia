@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -8,6 +9,12 @@ const Register = () => {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+
+    
+    const tostify = () => {
+        toast("Event Created Sucessful", { position: 'top-right' })
+
+    }
     return (
         <div className="register"
             style={{
@@ -59,11 +66,13 @@ const Register = () => {
                     <Button type="primary" htmlType="submit" 
                      style={{
                         width: '25%',
-                    }}>
+                    }}
+                    onClick={tostify}>
                         Register
                     </Button>
                 </Form.Item>
             </Form>
+            <ToastContainer/>
 
         </div>
     )

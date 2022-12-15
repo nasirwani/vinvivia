@@ -1,7 +1,12 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
+    const tostify=()=>{
+        toast("Login Sucessful" , {position:'top-center'})
+        
+    }
 
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -68,12 +73,13 @@ const Login = () => {
                     <Button type="primary" htmlType="submit"
                         style={{
                             width: '25%',
-                        }}>
+                        }}
+                        onClick={tostify}>
                         Login
                     </Button>
                 </Form.Item>
             </Form>
-
+            <ToastContainer />
         </div>
     )
 }
