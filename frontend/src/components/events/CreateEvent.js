@@ -1,6 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import M from 'materialize-css'
+import moment from "moment";
+import Card from "../Card";
+import M from "materialize-css";
 import {
   Drawer,
   Form,
@@ -14,43 +16,73 @@ import {
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { on } from "events";
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
-const CreateEvent = ({ show, handleOnClose ,resetFields}) => {
+const CreateEvent = ({ show, handleOnClose, resetFields }) => {
   const [form] = Form.useForm();
+  const [image, setImage] = useState("");
 
-  const onFinish = async(values) => {
-    let result = await fetch('/createevent',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify({
-            eventName:values.eventName,eventFormat:values.eventFormat, tenantName:values.tenantName,startDate:values.startDate,endDate:values.endDate,
-            eventtype:values.eventType,
+  const uploadImage = async (options) => {
+    const { file } = options;
+    console.log(file, "file");
+    // image upload to cloudinary
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", "insta_clone");
+    data.append("cloud_name", "nasu");
+    let resp = await fetch(
+      "https://api.cloudinary.com/v1_1/nasu/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    resp = await resp.json();
+    // console.log(resp);
+    setImage(resp.url);
+  };
+  useEffect(() => {
+    if (image) {
+      onFinish();
+    }
+  }, [image]);
+  const onFinish = async (values) => {
+    //post request to submit database
+    let result = await fetch("/createevent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventName: values.eventName,
+        eventFormat: values.eventFormat,
+        tenantName: values.tenantName,
+        startDate: values.startDate,
+        endDate: values.endDate,
+        eventtype: values.eventType,
+        eventDuration: values.eventDuration,
+        eventLogo: image,
+      }),
+    });
+    result = await result.json();
+    console.log(result);
+    if (result.error) {
+      // M.toast({html:result.error})
+    } else {
+      // M.toast({html:result.message,classes:'green'})
+      alert("event created successfully");
+      handleOnClose();
+      form.resetFields();
 
-        
-    })
-
-})
-result=await result.json()
-if(result.error){
-// M.toast({html:result.error})
-}
-else{
-    // M.toast({html:result.message,classes:'green'})
-    alert('event created successfully')
-    handleOnClose()
-    form.resetFields()
-}
-// console.log(result)
-  }
+      // Navigate('/')
+    }
+    // console.log(result)
+  };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
-
 
   return (
     <Drawer
@@ -90,7 +122,6 @@ else{
 
         <Form.Item name="eventType" label="Event Type">
           <Select placeholder="Please Select (optional)" allowClear>
-
             <Option value="Festival">Festival</Option>
             <Option value="Auction">Auction</Option>
             <Option value="Food and Drink">Food and Drink</Option>
@@ -123,7 +154,7 @@ else{
         <Form.Item
           name="eventZone"
           label="Event Zone"
-        //   rules={[{ required: true }]}
+          //   rules={[{ required: true }]}
         >
           <Select placeholder="(GMT+05:00) Asia/Ashgabat" allowClear>
             <Option value="male">(GMT+05:00) Asia/Ashgabat</Option>
@@ -137,9 +168,16 @@ else{
         <Form.Item
           label="Event Duration"
           name="eventDuration"
-        //   rules={[{ required: true }]}
+          //   rules={[{ required: true }]}
         >
-          <RangePicker />
+          <RangePicker
+            disabledDate={(current) => {
+              return (
+                moment().add(-1, "days") >= current ||
+                moment().add(1, "year") <= current
+              );
+            }}
+          />
         </Form.Item>
 
         <Form.Item
@@ -157,7 +195,7 @@ else{
         <Form.Item
           label="Slug"
           name="slug"
-        //   rules={[{ required: true, message: "required" }]}
+          //   rules={[{ required: true, message: "required" }]}
         >
           <Input />
         </Form.Item>
@@ -165,11 +203,19 @@ else{
         <Form.Item
           label="Event Logo"
           name="eventLogo"
-        //   rules={[{ required: true, message: "required" }]}
+          //   rules={[{ required: true, message: "required" }]}
         >
-          <Upload action="/upload.do" listType="picture-card">
+          <Upload
+        showUploadList={true} 
+            listType="picture-card"
+            //   onChange={handleUpload}
+            accept="image/*"
+            customRequest={uploadImage}
+            // disabled={uploading}
+          >
+            {/* {image.length>=0?null:<Upload/>} */}
             <div>
-              <PlusOutlined />
+              {/* <PlusOutlined /> */}
               <div style={{ marginTop: 8 }}>Drop/Upload Files Here</div>
             </div>
           </Upload>

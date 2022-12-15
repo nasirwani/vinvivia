@@ -37,8 +37,8 @@ router.get('/allevents',requireLogin, async (req, res)=>{
 //   });
 router.post("/createevent",async (req, res) => {
     try{
-        const {eventName,eventFormat,tenantName} = req.body;
-        if (!eventName || !eventFormat || !tenantName) {
+        const {eventName,eventFormat,tenantName,eventLogo} = req.body;
+        if (!eventName || !eventFormat || !tenantName ||!eventLogo) {
           return res.status(400).json({ error: "please fill all required fields" });
         }
         const posts = new Events({ eventName, eventFormat, tenantName,...req.body})

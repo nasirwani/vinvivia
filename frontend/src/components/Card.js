@@ -19,11 +19,11 @@ const Card = () => {
             });
             const usersData = await users.json();
             
-            setData(usersData);
+            setData(usersData.reverse());
 
           })();
         
-    },[data])
+    },[])
     return (
 
         <div className='card-container'>
@@ -31,7 +31,7 @@ const Card = () => {
                 return(
                     <div class="card1" key={index}>
                 <div class="card-image">
-                    <img src="https://cdn.pixabay.com/photo/2015/04/19/08/32/marguerite-729510__340.jpg" alt='' />
+                    <img src={data.eventLogo} alt='' />
                     <button type='click'>PUBLISHD</button>
                 </div>
                 <div class="card-content">
