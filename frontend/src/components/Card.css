@@ -158,3 +158,18 @@ h4 {
     color: grey;
 
 }
+/* .prev{
+    color:rgb(247, 46, 46)
+} */
+
+.btn{
+    width: 80%;
+    margin: 0 auto;
+}
+.prev button{
+    float: left;
+}
+.next button{
+    /* float:right; */
+    margin-left: 70%;
+}

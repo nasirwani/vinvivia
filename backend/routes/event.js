@@ -3,6 +3,7 @@ const express = require("express");
 const Events = mongoose.model("Event");
 const router = express.Router();
 const requireLogin = require("./../middleware/auth");
+const paginatedResults=require("./../middleware/pagination")
 
 router.get("/allevents", requireLogin, async (req, res) => {
   try {
@@ -66,24 +67,11 @@ router.post("/createevent", async (req, res) => {
 
 //pagination
 
-router.get("/myevents", async (req, res) => {
-  try {
-    // let page=parseInt(req.query.page)
-    // let limit = parseInt(req.query.limit)
-    // console.log(page);
-    // console.log(limit);
+router.get("/myevents", paginatedResults (Events), async (req, res) => {
+ res.json(res.paginatedResults) 
   
-
-    const posts = await Events.find({});
-   
-    res.status(200).json(posts);
-  }
-  catch (err) {
-    return res.status(400).json({ error: err.message });
-  }
-
-  //.limit(limit)
 });
+
 // search route
 
 // router.get("/search", async (req, res) => {
@@ -117,7 +105,7 @@ router.get("/search/:key", async (req, res) => {
       { eventstatus: { $regex: req.params.key } },
     ],
   });
-  console.log(result);
+  // console.log(result);
   if (result) {
     res.status(200).json(result);
   } else {
