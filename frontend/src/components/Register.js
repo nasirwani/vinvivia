@@ -1,10 +1,24 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
     const onFinish = (values) => {
         console.log('Success:', values);
+        console.log('Success:', values);
+        axios.post('/register', {
+            name: values.name,
+            email: values.email,
+            password: values.password
+          })
+          .then(function (response) {
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);

@@ -4,7 +4,7 @@ import Content from './components/Content';
 import Header from './components/Header';
 import { PlusCircleOutlined } from '@ant-design/icons'
 import { useState } from 'react'
-import { Button } from 'antd'
+import { Button ,Pagination} from 'antd'
 import CreateEvent from './components/events/CreateEvent';
 function App() {
 
@@ -13,8 +13,9 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Content />
+      {/* <Content /> */}
       <Card />
+      {/* <Pagination defaultCurrent={1} total={50} /> */}
 
       <Button
         type='primary'
