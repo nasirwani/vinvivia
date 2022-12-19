@@ -20,7 +20,7 @@ const Header = () => {
                     </span>
                 </h5>
 
-                <span className='log-btn'>
+                {/* <span className='log-btn'>
                     <Link to='/login'>
                         <Button type='button' style={{
                             display: 'inline-block',
@@ -28,9 +28,9 @@ const Header = () => {
                             marginLeft: '1%'
                         }}>Login</Button>
                     </Link>
-                </span>
+                </span> */}
 
-                <span className='reg-btn'>
+                {/* <span className='reg-btn'>
                     <Link to='/register'>
                         <Button type='button' 
                         style={{
@@ -39,7 +39,7 @@ const Header = () => {
                             marginLeft: '1%'
                         }}>Register</Button>
                     </Link>
-                </span>
+                </span> */}
 
 
                 <div className='header-user-info'>
