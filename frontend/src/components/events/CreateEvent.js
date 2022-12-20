@@ -11,10 +11,6 @@ import moment from 'moment';
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 
-
-
-
-
 const CreateEvent = ({ show, handleOnClose, resetFields }) => {
   const [form] = Form.useForm();
   const [image, setImage] = useState("");
@@ -34,9 +30,7 @@ const Cancel=() => {
 const Bool=() => {
   setPublic((prev)=>{
     return !prev;
-
   })
-
 }
 console.log(pub)
   const uploadImage = async (options) => {
