@@ -1,12 +1,21 @@
-
-import React, { Fragment, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import M from 'materialize-css'
-import { Drawer, Form, Input, Button, Select, Checkbox, Switch, DatePicker, Upload } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import moment from 'moment';
+import React, { Fragment, useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import M from "materialize-css";
+import {
+  Drawer,
+  Form,
+  Input,
+  Button,
+  Select,
+  Checkbox,
+  Switch,
+  DatePicker,
+  Upload,
+} from "antd";
+import { PlusOutlined } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
@@ -14,8 +23,9 @@ const { RangePicker } = DatePicker;
 const CreateEvent = ({ show, handleOnClose, resetFields }) => {
   const [form] = Form.useForm();
   const [image, setImage] = useState("");
-  const [pub,setPublic ] = useState(false);
+  const [pub, setPublic] = useState(false);
   const tostifyForCreatingEvent = () => {
+
     toast("Event Created Sucessful", { position: 'top-right' })
 
 }
@@ -33,6 +43,23 @@ const Bool=() => {
   })
 }
 console.log(pub)
+
+    toast("Event Created Sucessful", { position: "top-right" });
+  };
+
+  const tostifyForCancellingEvent = () => {
+    toast("Event Cancelled", { position: "top-right" });
+  };
+  const Cancel = () => {
+    tostifyForCancellingEvent();
+  };
+  const Bool = () => {
+    setPublic((prev) => {
+      return !prev;
+    });
+  };
+  console.log(pub);
+
   const uploadImage = async (options) => {
     const { file } = options;
     console.log(file, "file");
@@ -56,10 +83,10 @@ console.log(pub)
     if (image) {
       onFinish();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
   const onFinish = async (values) => {
-    console.log(values,'values')
+    console.log(values, "values");
     //post request to submit database
     let result = await fetch("/createevent", {
       method: "POST",
@@ -75,14 +102,13 @@ console.log(pub)
         eventtype: values.eventType,
         eventDuration: values.eventDuration,
         eventLogo: image,
-        ispublic:pub
+        ispublic: pub,
       }),
     });
     result = await result.json();
     // console.log(result);
     if (result.error) {
       // M.toast({html:result.error})
-     
     } else {
       // M.toast({html:result.message,classes:'green'})
       // alert("event created successfully");
@@ -160,7 +186,12 @@ console.log(pub)
         >
           <Switch />
         </Form.Item>
-        <Form.Item label="Is Public" valuePropName="checked" value={pub} onClick={Bool}>
+        <Form.Item
+          label="Is Public"
+          valuePropName="checked"
+          value={pub}
+          onClick={Bool}
+        >
           <Switch />
         </Form.Item>
         <Form.Item label="Polls based on shareholding" valuePropName="checked">
@@ -216,14 +247,13 @@ console.log(pub)
           <Input />
         </Form.Item>
 
-      
         <Form.Item
           label="Event Logo"
           name="eventLogo"
           //   rules={[{ required: true, message: "required" }]}
         >
           <Upload
-        showUploadList={true} 
+            showUploadList={true}
             listType="picture-card"
             //   onChange={handleUpload}
             accept="image/*"
@@ -273,7 +303,7 @@ console.log(pub)
             </Fragment>
           )}
         </Form.Item>
-        <ToastContainer/>
+        <ToastContainer />
       </Form>
     </Drawer>
   );
