@@ -68,6 +68,7 @@ router.post("/createevent", async (req, res) => {
 //pagination
 
 router.get("/myevents", paginatedResults (Events), async (req, res) => {
+  
  res.json(res.paginatedResults) 
   
 });
@@ -112,5 +113,24 @@ router.get("/search/:key", async (req, res) => {
     res.send({ error: "event not Found" });
   }
 });
+
+// router.get('/sort',async(req, res) => {
+//   let sort = req.query.sort || "createdAt";
+//   // console.log(req.query.sort)
+//   //if sort is present split that else add default value to array
+//   req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
+//   // console.log(sort);
+
+// 		let sortBy = {};
+// 		if (sort[1]) {
+// 			sortBy[sort[0]] = sort[1];
+// 		} else {
+// 			sortBy[sort[0]] = "asc";
+// 		}
+//     console.log(sortBy);
+//    const resp=await Events.find().sort(sortBy)
+//    let nbh=resp.length
+//    res.status(200).json({resp,nbh});
+// })
 
 module.exports = router;
