@@ -58,11 +58,10 @@ console.log(pub)
       return !prev;
     });
   };
-  console.log(pub);
 
   const uploadImage = async (options) => {
     const { file } = options;
-    console.log(file, "file");
+    // console.log(file, "file");
     // image upload to cloudinary
     const data = new FormData();
     data.append("file", file);
@@ -86,7 +85,7 @@ console.log(pub)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
   const onFinish = async (values) => {
-    console.log(values, "values");
+    // console.log(values, "values");
     //post request to submit database
     let result = await fetch("/createevent", {
       method: "POST",

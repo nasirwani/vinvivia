@@ -3,6 +3,18 @@ module.exports = function paginatedResults(model) {
     const page = parseInt(req.query.page);
     const count = parseInt(req.query.count);
 
+    //sorting
+    let sort = req.query.sort || "createdAt";
+  // console.log(req.query.sort)
+  //if sort is present split that else add default value to array
+  req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
+  let sortBy = {};
+		if (sort[1]) {
+			sortBy[sort[0]] = sort[1];
+		} else {
+			sortBy[sort[0]] = "asc";
+		}
+  //pagination
     const startIndex = (page - 1) * count;
     const endIndex = page * count;
 
@@ -26,7 +38,7 @@ module.exports = function paginatedResults(model) {
       };
     }
     try {
-      results.results = await model.find().limit(count).skip(startIndex).exec();
+      results.results = await model.find().limit(count).skip(startIndex).sort(sortBy).exec();
       // console.log(results);
       res.paginatedResults = results;
       next();
