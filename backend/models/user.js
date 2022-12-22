@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 6,
-  }
+  },
+
 });
 
-mongoose.model("User", userSchema);
+ mongoose.model("User", userSchema);
