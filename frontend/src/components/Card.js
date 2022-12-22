@@ -11,10 +11,12 @@ import Content from "./Content";
 import { Button } from "antd";
 
 const Card = () => {
-  const { results, nextPage, prevPage, canNextPage, canPrevPage } =
+  const { results, nextPage, prevPage, canNextPage, canPrevPage, setSort } =
     usePagination(3, fetchEvents);
 
   const [data, setData] = useState([]);
+  const [sortval, setSortVAl] = useState({ sort: "createdAt", order: "" });
+  // const {sort,order}=sortPage()
 
   //searchEvents
   const searchEvents = async (e) => {
@@ -42,6 +44,12 @@ const Card = () => {
   const Publish = (e) => {
     console.log(e.target.value);
   };
+
+  //take values from dropdown and update state which will be updateding payload
+  const onSelectChange = ({ currentTarget: input }) => {
+    setSortVAl({ sort: sortval.sort, order: input.value });
+    setSort(sortval);
+  };
   return (
     <>
       <div className="content-container">
@@ -61,9 +69,13 @@ const Card = () => {
               onChange={searchEvents}
             />
 
-            <select className="sort-method" icon={DownOutlined}>
-              <option value="Most-Recent">Sort by : Most Recent</option>
-              <option value="Oldest-First">Sort by : Oldest First</option>
+            <select
+              className="sort-method"
+              icon={DownOutlined}
+              onChange={onSelectChange}
+            >
+              <option value="desc">Sort by : Most Recent</option>
+              <option value="asc">Sort by : Oldest First</option>
             </select>
           </div>
         </div>
