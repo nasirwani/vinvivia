@@ -41,6 +41,7 @@ const Header = () => {
                     </Link>
                 </span> */}
 
+
                 <div className='header-user-info'>
                     <div className='user-logo'>
                         <img src='https://cdn.vinivia.events/1662631109907grjMXl50M9.jpg' alt='user-logo' />
@@ -51,6 +52,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+
         </div >
     )
 }

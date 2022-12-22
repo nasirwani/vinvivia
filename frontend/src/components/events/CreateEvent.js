@@ -25,25 +25,6 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
   const [image, setImage] = useState("");
   const [pub, setPublic] = useState(false);
   const tostifyForCreatingEvent = () => {
-
-    toast("Event Created Sucessful", { position: 'top-right' })
-
-}
-
-const tostifyForCancellingEvent = () => {
-    toast("Event Cancelled", { position: 'top-right' })
-
-}
-const Cancel=() => {
-  tostifyForCancellingEvent()
-}
-const Bool=() => {
-  setPublic((prev)=>{
-    return !prev;
-  })
-}
-console.log(pub)
-
     toast("Event Created Sucessful", { position: "top-right" });
   };
 
@@ -58,7 +39,7 @@ console.log(pub)
       return !prev;
     });
   };
-
+  // console.log(pub);
   const uploadImage = async (options) => {
     const { file } = options;
     // console.log(file, "file");
