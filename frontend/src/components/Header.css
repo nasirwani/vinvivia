@@ -52,14 +52,14 @@
 .dropdown {
     float: left;
     overflow: hidden;
-    width: 10%;
+    width: 12%;
     margin-left: 10%;
     padding: 8px;
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    border:0px;
 }
-
-
+/* 
 .dropdown-icon {
     margin-left: 5px;
     color: rgb(216, 50, 50);
-}
+} */

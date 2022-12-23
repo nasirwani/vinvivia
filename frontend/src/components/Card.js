@@ -68,7 +68,7 @@ const Card = ({ myevents }) => {
             <button className="btn2">Active Events {active}</button>
             <button className="btn3">Past Events</button>
             <input
-              class="nosubmit"
+            className="nosubmit"
               type="search"
               placeholder="Search..."
               onChange={searchEvents}
@@ -90,15 +90,19 @@ const Card = ({ myevents }) => {
           if (data.length > 0) {
             return data.map((data, index) => {
               return (
-                <div class="card1" key={index}>
-                  <div class="card-image">
+                <div className="card1" key={index}>
+                  <div className="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
                   </div>
+
                   <DeleteOutlined />
                   <div class="card-content">
+
+                  <div className="card-content">
+
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
 
@@ -132,14 +136,14 @@ const Card = ({ myevents }) => {
           } else {
             return results.map((data, index) => {
               return (
-                <div class="card1" key={index}>
-                  <div class="card-image">
+                <div className="card1" key={index}>
+                  <div className="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
                   </div>
-                  <div class="card-content">
+                  <div className="card-content">
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
 
