@@ -60,10 +60,10 @@ router.post("/createevent", async (req, res) => {
 //     res.status(200).json(event);
 
 // })
-// router.get("/myevents", async (req, res) => {
-//   const event = await Events.find();
-//   res.status(200).json(event);
-// });
+router.get("/myallevents", async (req, res) => {
+  const event = await Events.find();
+  res.status(200).json(event);
+});
 
 //pagination
 
@@ -114,6 +114,14 @@ router.get("/search/:key", async (req, res) => {
   }
 });
 
+//delete event
+router.delete('/deletedevent/:id', async(req, res) => {
+  const id =req.params.id;
+  await Events.deleteOne({id:id});
+  res.status(200).json({message: "event deleted successfully"});
+
+
+})
 // router.get('/sort',async(req, res) => {
 //   let sort = req.query.sort || "createdAt";
 //   // console.log(req.query.sort)

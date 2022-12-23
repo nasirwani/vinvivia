@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import M from "materialize-css";
 import {
   Drawer,
   Form,
