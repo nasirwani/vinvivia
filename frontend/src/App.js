@@ -41,7 +41,6 @@ function App() {
         show={showDrawer}
         handleOnClose={() => setShowDrawer(false)}
       />
-      <PopUp/>
     </div>
   );
 }
