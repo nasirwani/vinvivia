@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-
 export function usePagination(count, apiCall) {
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [next, setNext] = useState(true);
-  const [prev, setPrev] = useState(false);
+  const [next, setNext] = useState(true); //api check
+  const [prev, setPrev] = useState(false); //api check
   const [sort, setSort] = useState({ sort: "createdAt", order: "desc" });
 
   useEffect(() => {
@@ -29,8 +28,7 @@ export function usePagination(count, apiCall) {
       .finally(() => setLoading(false));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, results.length, sort]);
-
+  }, [page, results.length, sort, sort.order]);
   const nextPage = () => {
     setPage(page + 1);
   };
@@ -46,9 +44,6 @@ export function usePagination(count, apiCall) {
   const canPrevPage = () => {
     return prev;
   };
-  // const sortPage = () => {
-  //   return setSort(sort);
-  // };
 
   return {
     results,
@@ -58,7 +53,6 @@ export function usePagination(count, apiCall) {
     prevPage,
     canNextPage,
     canPrevPage,
-    // sortPage,
     setSort,
   };
 }

@@ -3,20 +3,34 @@ import Card from "./components/Card";
 import Content from "./components/Content";
 import Header from "./components/Header";
 import { PlusCircleOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Pagination } from "antd";
 import CreateEvent from "./components/events/CreateEvent";
+
+import axios from "axios";
+
 import PopUp from "./components/PopUp";
+
 function App() {
   const [showDrawer, setShowDrawer] = useState(false);
+  const [myevents, setMyevents] = useState([]);
 
+  useEffect(() => {
+    axios.get(`/myallevents`).then(({ data }) => {
+      setMyevents(data);
+    });
+  }, []);
   return (
     <div className="App">
       <Header />
       {/* <Content /> */}
-      <Card />
+      <Card myevents={myevents} />
       {/* <Pagination defaultCurrent={1} total={50} /> */}
+
+      <div style={{ width: "100%" }}>
+
       <div style={{ width: '100%' }}>
+
 
         <Button
           type="primary"
@@ -32,7 +46,11 @@ function App() {
             height: "8.5vh",
             backgroundColor: "rgb(216, 50, 50)",
             borderRadius: "50%",
+
+            display: "block",
+
             display: 'block'
+
           }}
         ></Button>
       </div>

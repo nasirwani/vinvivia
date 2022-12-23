@@ -2,20 +2,23 @@ import "./Card.css";
 import { useState, useEffect } from "react";
 import { usePagination } from "../hooks/usePagination";
 import { fetchEvents } from "../utils/api";
+import { isPast } from "date-fns";
+
+
 
 // import Moment from "react-moment";
 import moment from "moment";
-import { DownOutlined } from "@ant-design/icons";
+import  {DownOutlined,DeleteOutlined } from "@ant-design/icons";
 import "./Content.css";
 import Content from "./Content";
 import { Button } from "antd";
 
-const Card = () => {
+const Card = ({ myevents }) => {
   const { results, nextPage, prevPage, canNextPage, canPrevPage, setSort } =
     usePagination(3, fetchEvents);
-
   const [data, setData] = useState([]);
   const [sortval, setSortVAl] = useState({ sort: "createdAt", order: "" });
+  const [active, setActive] = useState(0);
   // const {sort,order}=sortPage()
 
   //searchEvents
@@ -50,6 +53,8 @@ const Card = () => {
     setSortVAl({ sort: sortval.sort, order: input.value });
     setSort(sortval);
   };
+
+  // console.log(pastevents);
   return (
     <>
       <div className="content-container">
@@ -59,8 +64,8 @@ const Card = () => {
           </div>
 
           <div className="event-type-wrapper">
-            <button className="btn1">All Events</button>
-            <button className="btn2">Active Events</button>
+            <button className="btn1">All Events {myevents.length}</button>
+            <button className="btn2">Active Events {active}</button>
             <button className="btn3">Past Events</button>
             <input
             className="nosubmit"
@@ -92,7 +97,12 @@ const Card = () => {
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
                   </div>
+
+                  <DeleteOutlined />
+                  <div class="card-content">
+
                   <div className="card-content">
+
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
 
