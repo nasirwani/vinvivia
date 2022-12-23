@@ -8,34 +8,26 @@ const Header = () => {
     const items = [
         {
             label: (
-                <a target="_blank" rel="noopener noreferrer" href="">
-                    MANAGE EVENTS
-                </a>
+                <a  rel="noopener noreferrer" href="/manage-events">MANAGE EVENTS</a>
             ),
             key: '0',
         },
         {
             label: (
-                <a target="_blank" rel="noopener noreferrer" href="/manage-tenants">
-                    MANAGE TENANTS
-                </a>
+                <a rel="noopener noreferrer" href="/manage-tenants">MANAGE TENANTS</a>
             ),
             key: '1',
 
         },
         {
             label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                    MANAGE ROLES
-                </a>
+                <a  rel="noopener noreferrer" href="https://www.aliyun.com">MANAGE ROLES</a>
             ),
             key: '2',
         },
         {
             label: (
-                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                    MANAGE USERS
-                </a>
+                <a  rel="noopener noreferrer" href="https://www.aliyun.com">MANAGE USERS</a>
             ),
             key: '1',
         }
