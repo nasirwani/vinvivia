@@ -181,7 +181,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
         <Form.Item
           name="eventZone"
           label="Event Zone"
-          //   rules={[{ required: true }]}
+        //   rules={[{ required: true }]}
         >
           <Select placeholder="(GMT+05:00) Asia/Ashgabat" allowClear>
             <Option value="male">(GMT+05:00) Asia/Ashgabat</Option>
@@ -195,7 +195,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
         <Form.Item
           label="Event Duration"
           name="eventDuration"
-          //   rules={[{ required: true }]}
+        //   rules={[{ required: true }]}
         >
           <RangePicker
             disabledDate={(current) => {
@@ -222,7 +222,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
         <Form.Item
           label="Slug"
           name="slug"
-          //   rules={[{ required: true, message: "required" }]}
+        //   rules={[{ required: true, message: "required" }]}
         >
           <Input />
         </Form.Item>
@@ -230,7 +230,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
         <Form.Item
           label="Event Logo"
           name="eventLogo"
-          //   rules={[{ required: true, message: "required" }]}
+        //   rules={[{ required: true, message: "required" }]}
         >
           <Upload
             showUploadList={true}
@@ -238,7 +238,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
             //   onChange={handleUpload}
             accept="image/*"
             customRequest={uploadImage}
-            // disabled={uploading}
+          // disabled={uploading}
           >
             {/* {image.length>=0?null:<Upload/>} */}
             <div>
@@ -265,7 +265,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
                 type="primary"
                 // onClick={hanldeSubmit}
                 htmlType="submit"
-                // disabled={!form.isFieldsTouched(true) || form.getFieldsError().filter(({ errors }) => errors.length).length}
+              // disabled={!form.isFieldsTouched(true) || form.getFieldsError().filter(({ errors }) => errors.length).length}
               >
                 Create
               </Button>
@@ -275,7 +275,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
                 htmlType="button"
                 onClick={() => form.resetFields()}
                 cancel={Cancel}
-                // onClick={tostifyForCancellingEvent()}
+              // onClick={tostifyForCancellingEvent()}
               >
                 {" "}
                 Cancel

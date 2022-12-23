@@ -1,8 +1,48 @@
 import './Header.css';
 import { DownOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button, select, option, Dropdown, Space } from 'antd';
+import ManageTenants from './events/ManageTenants';
 const Header = () => {
+
+    const items = [
+        {
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="">
+                    MANAGE EVENTS
+                </a>
+            ),
+            key: '0',
+        },
+        {
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="/manage-tenants">
+                    MANAGE TENANTS
+                </a>
+            ),
+            key: '1',
+
+        },
+        {
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+                    MANAGE ROLES
+                </a>
+            ),
+            key: '2',
+        },
+        {
+            label: (
+                <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
+                    MANAGE USERS
+                </a>
+            ),
+            key: '1',
+        }
+
+    ]
+
+
     return (
         <div className='header-container'>
             <div className='headercontent'>
@@ -14,11 +54,31 @@ const Header = () => {
                     vinivia
                 </div>
 
-                <h5 className='dropdown'>MANAGE
+
+                <Dropdown className='dropdown'
+                    menu={{
+                        items,
+                    }}
+                >
+                    <a onClick={(e) => e.preventDefault()}>
+                        <Space>
+                            <h5> MANAGE</h5>
+                            <DownOutlined />
+                        </Space>
+                    </a>
+                </Dropdown>
+                {/* <select className='dropdown'>
+                    <option><h5 >MANAGE EVENTS</h5></option>
+                    <option><h5 >MANAGE TENANTS</h5></option>
+                    <option><h5 >MANAGE ROLES</h5></option>
+                    <option><h5 >MANAGE USERS</h5></option>
+    </select>*/}
+
+                {/* <h5 className='dropdown'>MANAGE
                     <span className='dropdown-icon'>
                         <DownOutlined />
                     </span>
-                </h5>
+                </h5> */}
 
                 {/* <span className='log-btn'>
                     <Link to='/login'>
@@ -40,7 +100,6 @@ const Header = () => {
                         }}>Register</Button>
                     </Link>
                 </span> */}
-
 
                 <div className='header-user-info'>
                     <div className='user-logo'>
