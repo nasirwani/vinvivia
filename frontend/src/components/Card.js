@@ -55,6 +55,22 @@ const Card = ({ myevents }) => {
   };
 
   // console.log(pastevents);
+
+//delete eventS API
+const deleteEvent=async(id) => {
+  let result = await fetch(`http://localhost:5001/deletedevent/${id}`, {
+      method: "Delete",
+    });
+    result =await result.json();
+    if(result){
+      fetchEvents();
+    }
+    // const newData=data.filter((item)=>{
+    //   return item._id !==result._id
+    // })
+    // setData(newData);
+}
+
   return (
     <>
       <div className="content-container">
@@ -96,8 +112,9 @@ const Card = ({ myevents }) => {
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
+                    <DeleteOutlined style={{float:'right'}}/>
                   </div>
-                  <DeleteOutlined />
+                
                   <div class="card-content">
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
@@ -131,13 +148,16 @@ const Card = ({ myevents }) => {
             });
           } else {
             return results.map((data, index) => {
+      
               return (
+        
                 <div class="card1" key={index}>
                   <div class="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
+                    <DeleteOutlined style={{float:'right'}} onClick={()=>deleteEvent(data._id)}/>
                   </div>
                   <div class="card-content">
                     <p>{data.tenantName}</p>
