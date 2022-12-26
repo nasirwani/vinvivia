@@ -27,7 +27,7 @@ function App() {
       <Card myevents={myevents} />
       {/* <Pagination defaultCurrent={1} total={50} /> */}
 
-      <div style={{ width: "100%" }}>
+      {/* <div style={{ width: "100%" }}> */}
 
       <div style={{ width: '100%' }}>
 
@@ -60,6 +60,7 @@ function App() {
         handleOnClose={() => setShowDrawer(false)}
       />
     </div>
+    
   );
 }
 
