@@ -6,10 +6,11 @@ import { isPast } from "date-fns";
 
 // import Moment from "react-moment";
 import moment from "moment";
-import { DownOutlined, DeleteOutlined } from "@ant-design/icons";
+import { DownOutlined, DeleteOutlined,EditOutlined } from "@ant-design/icons";
 import "./Content.css";
 import Content from "./Content";
 import { Button } from "antd";
+import {Link} from 'react-router-dom';
 
 const Card = ({ myevents }) => {
   const { results, nextPage, prevPage, canNextPage, canPrevPage, setSort } =
@@ -111,6 +112,7 @@ const Card = ({ myevents }) => {
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
+                    <EditOutlined style={{marginLeft:'160px'}}/>
                     <DeleteOutlined style={{ float: "right" }} />
                   </div>
 
@@ -154,6 +156,8 @@ const Card = ({ myevents }) => {
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
+                   {/* <Link to={"/update/" + data._id}><EditOutlined style={{marginLeft:'160px'}}/></Link>  */}
+                   <Link to={"/updatevent/" + data._id}><EditOutlined style={{marginLeft:'160px'}}/></Link> 
                     <DeleteOutlined
                       style={{ float: "right" }}
                       onClick={() => deleteEvent(data._id)}
