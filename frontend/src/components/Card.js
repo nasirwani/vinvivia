@@ -6,10 +6,11 @@ import { isPast } from "date-fns";
 
 // import Moment from "react-moment";
 import moment from "moment";
-import { DownOutlined, DeleteOutlined } from "@ant-design/icons";
+import { DownOutlined, DeleteOutlined,EditOutlined } from "@ant-design/icons";
 import "./Content.css";
 import Content from "./Content";
 import { Button } from "antd";
+import {Link} from 'react-router-dom';
 
 const Card = ({ myevents }) => {
   const { results, nextPage, prevPage, canNextPage, canPrevPage, setSort } =
@@ -53,6 +54,23 @@ const Card = ({ myevents }) => {
   };
 
   // console.log(pastevents);
+
+  //delete eventS API
+  const deleteEvent = async (id) => {
+    let result = await fetch(`http://localhost:5001/deletedevent/${id}`, {
+      method: "Delete",
+    });
+    result = await result.json();
+    // if(result){
+    //   fetchEvents();
+    // }
+    const newData = results.filter((item) => {
+      // console.log(item)
+      return item._id !== result._id;
+    });
+    setData(newData);
+  };
+  console.log(data);
   return (
     <>
       <div className="content-container">
@@ -66,7 +84,7 @@ const Card = ({ myevents }) => {
             <button className="btn2">Active Events {active}</button>
             <button className="btn3">Past Events</button>
             <input
-              className="nosubmit"
+              class="nosubmit"
               type="search"
               placeholder="Search..."
               onChange={searchEvents}
@@ -88,43 +106,41 @@ const Card = ({ myevents }) => {
           if (data.length > 0) {
             return data.map((data, index) => {
               return (
-                <div className="card1" key={index}>
-                  <div className="card-image">
+                <div class="card1" key={index}>
+                  <div class="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
+                    <EditOutlined style={{marginLeft:'160px'}}/>
+                    <DeleteOutlined style={{ float: "right" }} />
                   </div>
 
-                  <DeleteOutlined />
                   <div class="card-content">
-                    <div className="card-content">
-                      <p>{data.tenantName}</p>
-                      <h4>{data.eventName}</h4>
+                    <p>{data.tenantName}</p>
+                    <h4>{data.eventName}</h4>
 
-                      <div className="card-date">
-                        <div className="start">
-                          <div>Start</div>
-                          <div>
-                            {moment(data.startDate).format(
-                              "MM DD YYYY, h:mm:ss"
-                            )}
-                          </div>
-                        </div>
+                    <div className="card-date">
+                      <div className="start">
+                        <div>Start</div>
 
-                        <div className="end">
-                          <div>End</div>
-                          <div>
-                            {moment(data.endDate).format("MM DD YYYY, h:mm:ss")}
-                          </div>
+                        <div>
+                          {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
                         </div>
                       </div>
 
-                      <div className="info">
-                        <div className="details">
-                          <div className="name">Created by</div>
-                          <div className="email">admin@vinivia.com</div>
+                      <div className="end">
+                        <div>End</div>
+                        <div>
+                          {moment(data.endDate).format("MM DD YYYY, h:mm:ss")}
                         </div>
+                      </div>
+                    </div>
+
+                    <div className="info">
+                      <div className="details">
+                        <div className="name">Created by</div>
+                        <div className="email">admin@vinivia.com</div>
                       </div>
                     </div>
                   </div>
@@ -134,21 +150,27 @@ const Card = ({ myevents }) => {
           } else {
             return results.map((data, index) => {
               return (
-                <div className="card1" key={index}>
-                  <div className="card-image">
+                <div class="card1" key={index}>
+                  <div class="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
+                   {/* <Link to={"/update/" + data._id}><EditOutlined style={{marginLeft:'160px'}}/></Link>  */}
+                   <Link to={"/updatevent/" + data._id}><EditOutlined style={{marginLeft:'160px'}}/></Link> 
+                    <DeleteOutlined
+                      style={{ float: "right" }}
+                      onClick={() => deleteEvent(data._id)}
+                    />
                   </div>
-
-                  <div className="card-content">
+                  <div class="card-content">
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
 
                     <div className="card-date">
                       <div className="start">
                         <div>Start</div>
+
                         <div>
                           {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
                         </div>
@@ -176,7 +198,6 @@ const Card = ({ myevents }) => {
         })()}
         {/* <Content/> */}
       </div>
-
       <div className="btn">
         <div className="prev">
           <Button

@@ -1,9 +1,9 @@
 import './Header.css';
 import { DownOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
-import { Button, select, option, Dropdown, Space } from 'antd';
-import ManageTenants from './events/ManageTenants';
+import { Button ,Dropdown,Space} from 'antd';
 const Header = () => {
+
 
     const items = [
         {
@@ -35,6 +35,7 @@ const Header = () => {
     ]
 
 
+
     return (
         <div className='header-container'>
             <div className='headercontent'>
@@ -45,32 +46,18 @@ const Header = () => {
                 <div className='logoname'>
                     vinivia
                 </div>
-
-
                 <Dropdown className='dropdown'
-                    menu={{
-                        items,
-                    }}
-                >
-                    <a onClick={(e) => e.preventDefault()}>
-                        <Space>
-                            <h5> MANAGE</h5>
-                            <DownOutlined />
-                        </Space>
-                    </a>
-                </Dropdown>
-                {/* <select className='dropdown'>
-                    <option><h5 >MANAGE EVENTS</h5></option>
-                    <option><h5 >MANAGE TENANTS</h5></option>
-                    <option><h5 >MANAGE ROLES</h5></option>
-                    <option><h5 >MANAGE USERS</h5></option>
-    </select>*/}
-
-                {/* <h5 className='dropdown'>MANAGE
-                    <span className='dropdown-icon'>
+                menu={{
+                    items,
+                }}
+            >
+                <a onClick={(e) => e.preventDefault()}>
+                    <Space>
+                        <h5> MANAGE</h5>
                         <DownOutlined />
-                    </span>
-                </h5> */}
+                    </Space>
+                </a>
+            </Dropdown>
 
                 {/* <span className='log-btn'>
                     <Link to='/login'>
@@ -92,6 +79,7 @@ const Header = () => {
                         }}>Register</Button>
                     </Link>
                 </span> */}
+
 
                 <div className='header-user-info'>
                     <div className='user-logo'>
