@@ -6,13 +6,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login';
 import Register from './components/Register';
 import App from './App';
-
 import ManageTenants from './components/events/ManageTenants';
 import ManageEvents from './components/events/ManageEvents';
-
 import ManageRoles from './components/events/ManageRoles';
-
-import UpdateEvent from './components/UpdateEvent';
+import UpdateEvent from './components/events/UpdateEvent';
 
 
 

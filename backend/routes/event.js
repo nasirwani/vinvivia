@@ -117,7 +117,7 @@ router.get("/search/:key", async (req, res) => {
 router.delete("/deletedevent/:id", async (req, res) => {
   let data = await Events.findOne({ _id: req.params.id });
   if (!data) {
-    return res.status(404).json({ error: "cannot find event" });
+    return res.status(422).json({ error: "cannot find event" });
   }
   await Events.deleteOne({ data: data });
   return res.status(200).json(data);

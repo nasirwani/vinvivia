@@ -1,38 +1,30 @@
-
-import React, { Fragment, useEffect, useState } from 'react'
-import PropTypes from 'prop-types'
-import M from 'materialize-css'
-import { Drawer, Form, Input, Button, Select, Checkbox, Switch, DatePicker, Upload } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Form, Input, Select, Option, Switch, Checkbox, DatePicker, Upload, Button } from "antd";
 import moment from 'moment';
+import { useState, useEffect, Fragment } from 'react'
+import { PlusOutlined } from '@ant-design/icons'
+const UpdateEvent = ({  handleOnClose}) => {
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
+  // useEffect(()=>{
+  //   getSingleEvent()
+  // })
+  // const getSingleEvent=async()=>{
+  //  let result = await fetch(`/singleevent${params.id}`,{
+  //   method: "GET",
 
-const CreateEvent = ({ show, handleOnClose, resetFields }) => {
+  //  })
+  //  result = await result.json()
+  //  console.log(result)
+  // }
+
+  // /====================================================================
   const [form] = Form.useForm();
+
+  const { Option } = Select;
+  const { RangePicker } = DatePicker;
+
   const [image, setImage] = useState("");
   const [pub,setPublic ] = useState(false);
-  const tostifyForCreatingEvent = () => {
-    toast("Event Created Sucessful", { position: 'top-right' })
 
-}
-
-const tostifyForCancellingEvent = () => {
-    toast("Event Cancelled", { position: 'top-right' })
-
-}
-const Cancel=() => {
-  tostifyForCancellingEvent()
-}
-const Bool=() => {
-  setPublic((prev)=>{
-    return !prev;
-  })
-}
-console.log(pub)
   const uploadImage = async (options) => {
     const { file } = options;
     console.log(file, "file");
@@ -56,12 +48,14 @@ console.log(pub)
     if (image) {
       onFinish();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
+
+
   const onFinish = async (values) => {
     console.log(values,'values')
     //post request to submit database
-    let result = await fetch("/createevent", {
+    let result = await fetch("/updateevent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -79,50 +73,47 @@ console.log(pub)
       }),
     });
     result = await result.json();
-    // console.log(result);
+    console.log(result);
     if (result.error) {
-      // M.toast({html:result.error})
-     
     } else {
-      // M.toast({html:result.message,classes:'green'})
-      // alert("event created successfully");
-      // toast('success')
-      // toast("Event Created Sucessful", { position: 'top-right' })
-      // tostifyForCreatingEvent()
       handleOnClose();
       form.resetFields();
-
-      // Navigate('/')
     }
-    // console.log(result)
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   return (
-    <Drawer
-      width={512}
-      title="Create Event"
-      open={show}
-      onClose={handleOnClose}
-      maskClosable={true}
-    >
+    <div >
       <Form
-        form={form}
         name="basic"
-        layout={"vertical"}
+        initialValues={{ remember: true, }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
+        // layout="vertical"
+
+        style={{
+          width: '600px',
+          margin: '0 auto',
+          border: '2px solid #eee',
+          padding: '20px'
+        }}
       >
+
         <Form.Item
           label="Event Name"
           name="eventName"
           rules={[{ required: true, message: "Please input your Event Name!" }]}
+          style={{
+            marginTop: '20px'
+          }}
         >
           <Input placeholder="What is the name of your event?" />
         </Form.Item>
+
+
 
         <Form.Item
           name="eventFormat"
@@ -160,17 +151,21 @@ console.log(pub)
         >
           <Switch />
         </Form.Item>
-        <Form.Item label="Is Public" valuePropName="checked" value={pub} onClick={Bool}>
+        <Form.Item label="Is Public" valuePropName="checked"
+        // value={pub} onClick={Bool}
+        >
           <Switch />
         </Form.Item>
         <Form.Item label="Polls based on shareholding" valuePropName="checked">
           <Switch />
         </Form.Item>
 
+
+
         <Form.Item
           name="eventZone"
           label="Event Zone"
-          //   rules={[{ required: true }]}
+        //   rules={[{ required: true }]}
         >
           <Select placeholder="(GMT+05:00) Asia/Ashgabat" allowClear>
             <Option value="male">(GMT+05:00) Asia/Ashgabat</Option>
@@ -184,7 +179,7 @@ console.log(pub)
         <Form.Item
           label="Event Duration"
           name="eventDuration"
-          //   rules={[{ required: true }]}
+        //   rules={[{ required: true }]}
         >
           <RangePicker
             disabledDate={(current) => {
@@ -211,32 +206,33 @@ console.log(pub)
         <Form.Item
           label="Slug"
           name="slug"
-          //   rules={[{ required: true, message: "required" }]}
+        //   rules={[{ required: true, message: "required" }]}
         >
           <Input />
         </Form.Item>
 
-      
+
         <Form.Item
           label="Event Logo"
           name="eventLogo"
-          //   rules={[{ required: true, message: "required" }]}
+        //   rules={[{ required: true, message: "required" }]}
         >
           <Upload
-        showUploadList={true} 
+            showUploadList={true}
             listType="picture-card"
             //   onChange={handleUpload}
             accept="image/*"
             customRequest={uploadImage}
-            // disabled={uploading}
+          // disabled={uploading}
           >
             {/* {image.length>=0?null:<Upload/>} */}
             <div>
-              {/* <PlusOutlined /> */}
+              <PlusOutlined /> 
               <div style={{ marginTop: 8 }}>Drop/Upload Files Here</div>
             </div>
           </Upload>
         </Form.Item>
+
 
         <Form.Item label="Banner Image">
           <Upload action="/upload.do" listType="picture-card">
@@ -251,21 +247,17 @@ console.log(pub)
           {() => (
             <Fragment>
               <Button
-                style={{ width: "25%", padding: "5px" }}
+                style={{ width: "25%", padding: "5px", float: 'left', marginLeft: "100px" }}
                 type="primary"
-                // onClick={hanldeSubmit}
                 htmlType="submit"
-                // disabled={!form.isFieldsTouched(true) || form.getFieldsError().filter(({ errors }) => errors.length).length}
               >
-                Create
+                Update
               </Button>
 
               <Button
-                style={{ width: "25%", padding: "5px", marginLeft: "10px" }}
+                style={{ width: "25%", padding: "5px", marginRight: "100px", marginBottom: '20px', float: 'right' }}
                 htmlType="button"
                 onClick={() => form.resetFields()}
-                cancel={Cancel}
-                // onClick={tostifyForCancellingEvent()}
               >
                 {" "}
                 Cancel
@@ -273,16 +265,9 @@ console.log(pub)
             </Fragment>
           )}
         </Form.Item>
-        <ToastContainer/>
+
       </Form>
-    </Drawer>
+    </div>
   );
 };
-
-Drawer.propTypes = {
-  show: PropTypes.bool.isRequired,
-  handleOnClose: PropTypes.func.isRequired,
-  handleOnFinish: PropTypes.func.isRequired,
-  handleOnFinishFailed: PropTypes.func.isRequired,
-};
-export default CreateEvent;
+export default UpdateEvent;
