@@ -98,9 +98,7 @@ const Card = ({ myevents }) => {
 
                   <DeleteOutlined />
                   <div class="card-content">
-
                     <div className="card-content">
-
                       <p>{data.tenantName}</p>
                       <h4>{data.eventName}</h4>
 
@@ -108,7 +106,9 @@ const Card = ({ myevents }) => {
                         <div className="start">
                           <div>Start</div>
                           <div>
-                            {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
+                            {moment(data.startDate).format(
+                              "MM DD YYYY, h:mm:ss"
+                            )}
                           </div>
                         </div>
 
@@ -126,7 +126,6 @@ const Card = ({ myevents }) => {
                           <div className="email">admin@vinivia.com</div>
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
@@ -136,7 +135,6 @@ const Card = ({ myevents }) => {
             return results.map((data, index) => {
               return (
                 <div className="card1" key={index}>
-
                   <div className="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
@@ -170,7 +168,6 @@ const Card = ({ myevents }) => {
                         <div className="email">admin@vinivia.com</div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               );
@@ -179,8 +176,6 @@ const Card = ({ myevents }) => {
         })()}
         {/* <Content/> */}
       </div>
-
-
 
       <div className="btn">
         <div className="prev">
@@ -204,8 +199,6 @@ const Card = ({ myevents }) => {
           </Button>
         </div>
       </div>
-
-
     </>
   );
 };
