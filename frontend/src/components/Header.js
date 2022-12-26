@@ -3,6 +3,39 @@ import { DownOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 const Header = () => {
+
+
+    const items = [
+        {
+            label: (
+                <a  rel="noopener noreferrer" href="/manage-events">MANAGE EVENTS</a>
+            ),
+            key: '0',
+        },
+        {
+            label: (
+                <a rel="noopener noreferrer" href="/manage-tenants">MANAGE TENANTS</a>
+            ),
+            key: '1',
+
+        },
+        {
+            label: (
+                <a  rel="noopener noreferrer" href="https://www.aliyun.com">MANAGE ROLES</a>
+            ),
+            key: '2',
+        },
+        {
+            label: (
+                <a  rel="noopener noreferrer" href="https://www.aliyun.com">MANAGE USERS</a>
+            ),
+            key: '1',
+        }
+
+    ]
+
+
+
     return (
         <div className='header-container'>
             <div className='headercontent'>

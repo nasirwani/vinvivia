@@ -7,6 +7,10 @@ import Login from './components/Login';
 import Register from './components/Register';
 import App from './App';
 
+import ManageTenants from './components/events/ManageTenants';
+import ManageEvents from './components/events/ManageEvents';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -14,6 +18,11 @@ root.render(
       <Route path='/' element={<App />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
+
+      <Route path='/manage-events' element={<ManageEvents />} />
+      <Route path='/manage-tenants' element={<ManageTenants />} />
+
+
     </Routes>
   </BrowserRouter>
 );
