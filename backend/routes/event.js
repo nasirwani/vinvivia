@@ -3,7 +3,7 @@ const express = require("express");
 const Events = mongoose.model("Event");
 const router = express.Router();
 const requireLogin = require("./../middleware/auth");
-const paginatedResults=require("./../middleware/pagination")
+const paginatedResults = require("./../middleware/pagination");
 
 router.get("/allevents", requireLogin, async (req, res) => {
   try {
@@ -67,10 +67,8 @@ router.get("/myallevents", async (req, res) => {
 
 //pagination
 
-router.get("/myevents", paginatedResults (Events), async (req, res) => {
-  
- res.json(res.paginatedResults) 
-  
+router.get("/myevents", paginatedResults(Events), async (req, res) => {
+  res.json(res.paginatedResults);
 });
 
 // search route
@@ -117,24 +115,33 @@ router.get("/search/:key", async (req, res) => {
 //delete event
 
 router.delete("/deletedevent/:id", async (req, res) => {
-  let data =  await Events.findOne({ _id: req.params.id });
-  if(!data) {
-    return res.status(404).json({ error: "cannot find event"})
+  let data = await Events.findOne({ _id: req.params.id });
+  if (!data) {
+    return res.status(404).json({ error: "cannot find event" });
   }
-  await Events.deleteOne({data: data});
- return res.status(200).json(data)
+  await Events.deleteOne({ data: data });
+  return res.status(200).json(data);
 });
 
-//update event
-
-
+//single event
+router.get("/singleevent/:id", async (req, res) => {
+  try {
+    const data = await Events.findOne({ _id: req.params.id });
+    if (!data) {
+      return res.status(404).json({ error: "cannot find event" });
+    }
+    return res.status(200).json(data);
+  } catch (error) {
+    return res.status(500).json({ error:error.message });
+  }
+});
 
 router.put("/updatedevent/:id", async (req, res) => {
   let result = await Events.updateOne(
     { id: req.params._id },
     { $set: req.body }
   );
- return res.status(200).json(result);
+  return res.status(200).json(result);
 });
 // router.get('/sort',async(req, res) => {
 //   let sort = req.query.sort || "createdAt";

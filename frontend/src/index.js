@@ -10,6 +10,11 @@ import App from './App';
 import ManageTenants from './components/events/ManageTenants';
 import ManageEvents from './components/events/ManageEvents';
 
+import ManageRoles from './components/events/ManageRoles';
+
+import UpdateEvent from './components/UpdateEvent';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +26,12 @@ root.render(
 
       <Route path='/manage-events' element={<ManageEvents />} />
       <Route path='/manage-tenants' element={<ManageTenants />} />
+
+      <Route path='/manage-roles' element={<ManageRoles/>}/>
+
+      <Route path='/updatevent/:id' element={<UpdateEvent />} />
+      
+
 
 
     </Routes>
