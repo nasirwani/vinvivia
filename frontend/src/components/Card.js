@@ -61,6 +61,7 @@ const Card = ({ myevents }) => {
       method: "Delete",
     });
     result = await result.json();
+    console.log(result)
     // if(result){
     //   fetchEvents();
     // }
@@ -70,7 +71,7 @@ const Card = ({ myevents }) => {
     });
     setData(newData);
   };
-  console.log(data);
+  
   return (
     <>
       <div className="content-container">
