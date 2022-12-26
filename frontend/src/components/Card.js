@@ -62,15 +62,16 @@ const deleteEvent=async(id) => {
       method: "Delete",
     });
     result =await result.json();
-    if(result){
-      fetchEvents();
-    }
-    // const newData=data.filter((item)=>{
-    //   return item._id !==result._id
-    // })
-    // setData(newData);
+    // if(result){
+    //   fetchEvents();
+    // }
+    const newData=results.filter((item)=>{
+      // console.log(item)
+      return item._id !==result._id
+    })
+    setData(newData);
 }
-
+console.log(data)
   return (
     <>
       <div className="content-container">
