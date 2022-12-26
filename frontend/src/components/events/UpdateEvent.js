@@ -113,8 +113,6 @@ const UpdateEvent = ({  handleOnClose}) => {
           <Input placeholder="What is the name of your event?" />
         </Form.Item>
 
-
-
         <Form.Item
           name="eventFormat"
           label="Event Format"
