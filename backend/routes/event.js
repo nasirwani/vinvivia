@@ -137,11 +137,17 @@ router.get("/singleevent/:id", async (req, res) => {
 });
 
 router.put("/updatedevent/:id", async (req, res) => {
-  let result = await Events.updateOne(
-    { id: req.params._id },
-    { $set: req.body }
-  );
-  return res.status(200).json(result);
+  const id = req.params.id;
+  const data = await Events.findByIdAndUpdate(
+    { _id: id },
+    req.body,
+    { new: true, runValidators: true }
+  )
+  if (!data) {
+    return res.status(404).json({ error: "cannot find event" });
+  }
+  
+  return res.status(200).json("Event Successfully updated");
 });
 // router.get('/sort',async(req, res) => {
 //   let sort = req.query.sort || "createdAt";
