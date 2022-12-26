@@ -9,6 +9,7 @@ import App from './App';
 
 import ManageTenants from './components/events/ManageTenants';
 import ManageEvents from './components/events/ManageEvents';
+import UpdateEvent from './components/UpdateEvent';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,6 +22,8 @@ root.render(
 
       <Route path='/manage-events' element={<ManageEvents />} />
       <Route path='/manage-tenants' element={<ManageTenants />} />
+      <Route path='/updatevent/:id' element={<UpdateEvent />} />
+      
 
 
     </Routes>
