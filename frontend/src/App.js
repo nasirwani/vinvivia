@@ -9,8 +9,6 @@ import CreateEvent from "./components/events/CreateEvent";
 
 import axios from "axios";
 
-import PopUp from "./components/PopUp";
-
 function App() {
   const [showDrawer, setShowDrawer] = useState(false);
   const [myevents, setMyevents] = useState([]);
@@ -29,36 +27,37 @@ function App() {
 
       {/* <div style={{ width: "100%" }}> */}
 
-      <div style={{ width: '100%' }}>
+        <div style={{ width: '100%' }}>
 
 
-        <Button
-          type="primary"
-          icon={<PlusCircleOutlined style={{ fontSize: 40 }} />}
-          data-testid="add-contact-button"
-          onClick={() => setShowDrawer(true)}
-          style={{
-            float: "right",
-            fontSize: 20,
-            marginBottom: "15px",
-            // paddingBottom: "15px",
-            width: "4%",
-            height: "8.5vh",
-            backgroundColor: "rgb(216, 50, 50)",
-            borderRadius: "50%",
+          <Button
+            type="primary"
+            icon={<PlusCircleOutlined style={{ fontSize: 40 }} />}
+            data-testid="add-contact-button"
+            onClick={() => setShowDrawer(true)}
+            style={{
+              float: "right",
+              fontSize: 20,
+              marginBottom: "15px",
+              // paddingBottom: "15px",
+              width: "4%",
+              height: "8.5vh",
+              backgroundColor: "rgb(216, 50, 50)",
+              borderRadius: "50%",
 
-            display: "block",
+              display: "block",
 
-            display: 'block'
+              display: 'block'
 
-          }}
-        ></Button>
+            }}
+          ></Button>
+        </div>
+
+        <CreateEvent
+          show={showDrawer}
+          handleOnClose={() => setShowDrawer(false)}
+        />
       </div>
-
-      <CreateEvent
-        show={showDrawer}
-        handleOnClose={() => setShowDrawer(false)}
-      />
     </div>
     
   );

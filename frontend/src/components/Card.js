@@ -4,11 +4,9 @@ import { usePagination } from "../hooks/usePagination";
 import { fetchEvents } from "../utils/api";
 import { isPast } from "date-fns";
 
-
-
 // import Moment from "react-moment";
 import moment from "moment";
-import  {DownOutlined,DeleteOutlined } from "@ant-design/icons";
+import { DownOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./Content.css";
 import Content from "./Content";
 import { Button } from "antd";
@@ -68,7 +66,7 @@ const Card = ({ myevents }) => {
             <button className="btn2">Active Events {active}</button>
             <button className="btn3">Past Events</button>
             <input
-            className="nosubmit"
+              className="nosubmit"
               type="search"
               placeholder="Search..."
               onChange={searchEvents}
@@ -101,33 +99,34 @@ const Card = ({ myevents }) => {
                   <DeleteOutlined />
                   <div class="card-content">
 
-                  <div className="card-content">
+                    <div className="card-content">
 
-                    <p>{data.tenantName}</p>
-                    <h4>{data.eventName}</h4>
+                      <p>{data.tenantName}</p>
+                      <h4>{data.eventName}</h4>
 
-                    <div className="card-date">
-                      <div className="start">
-                        <div>Start</div>
+                      <div className="card-date">
+                        <div className="start">
+                          <div>Start</div>
+                          <div>
+                            {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
+                          </div>
+                        </div>
 
-                        <div>
-                          {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
+                        <div className="end">
+                          <div>End</div>
+                          <div>
+                            {moment(data.endDate).format("MM DD YYYY, h:mm:ss")}
+                          </div>
                         </div>
                       </div>
 
-                      <div className="end">
-                        <div>End</div>
-                        <div>
-                          {moment(data.endDate).format("MM DD YYYY, h:mm:ss")}
+                      <div className="info">
+                        <div className="details">
+                          <div className="name">Created by</div>
+                          <div className="email">admin@vinivia.com</div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="info">
-                      <div className="details">
-                        <div className="name">Created by</div>
-                        <div className="email">admin@vinivia.com</div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -137,12 +136,14 @@ const Card = ({ myevents }) => {
             return results.map((data, index) => {
               return (
                 <div className="card1" key={index}>
+
                   <div className="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
                   </div>
+
                   <div className="card-content">
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
@@ -150,7 +151,6 @@ const Card = ({ myevents }) => {
                     <div className="card-date">
                       <div className="start">
                         <div>Start</div>
-
                         <div>
                           {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
                         </div>
@@ -170,6 +170,7 @@ const Card = ({ myevents }) => {
                         <div className="email">admin@vinivia.com</div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               );
@@ -178,6 +179,9 @@ const Card = ({ myevents }) => {
         })()}
         {/* <Content/> */}
       </div>
+
+
+
       <div className="btn">
         <div className="prev">
           <Button
@@ -200,6 +204,8 @@ const Card = ({ myevents }) => {
           </Button>
         </div>
       </div>
+
+
     </>
   );
 };
