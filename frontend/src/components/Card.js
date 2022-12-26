@@ -83,7 +83,7 @@ const Card = ({ myevents }) => {
             <button className="btn2">Active Events {active}</button>
             <button className="btn3">Past Events</button>
             <input
-
+              class="nosubmit"
               type="search"
               placeholder="Search..."
               onChange={searchEvents}
@@ -115,7 +115,6 @@ const Card = ({ myevents }) => {
                   </div>
 
                   <div class="card-content">
-
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
 
@@ -125,35 +124,21 @@ const Card = ({ myevents }) => {
 
                         <div>
                           {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
-
-                    <div className="card-content">
-                      <p>{data.tenantName}</p>
-                      <h4>{data.eventName}</h4>
-
-                      <div className="card-date">
-                        <div className="start">
-                          <div>Start</div>
-                          <div>
-                            {moment(data.startDate).format(
-                              "MM DD YYYY, h:mm:ss"
-                            )}
-                          </div>
-
-                        </div>
-
-                        <div className="end">
-                          <div>End</div>
-                          <div>
-                            {moment(data.endDate).format("MM DD YYYY, h:mm:ss")}
-                          </div>
                         </div>
                       </div>
 
-                      <div className="info">
-                        <div className="details">
-                          <div className="name">Created by</div>
-                          <div className="email">admin@vinivia.com</div>
+                      <div className="end">
+                        <div>End</div>
+                        <div>
+                          {moment(data.endDate).format("MM DD YYYY, h:mm:ss")}
                         </div>
+                      </div>
+                    </div>
+
+                    <div className="info">
+                      <div className="details">
+                        <div className="name">Created by</div>
+                        <div className="email">admin@vinivia.com</div>
                       </div>
                     </div>
                   </div>
@@ -174,18 +159,14 @@ const Card = ({ myevents }) => {
                       onClick={() => deleteEvent(data._id)}
                     />
                   </div>
-
                   <div class="card-content">
-
-
-                  <div className="card-content">
-
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
 
                     <div className="card-date">
                       <div className="start">
                         <div>Start</div>
+
                         <div>
                           {moment(data.startDate).format("MM DD YYYY, h:mm:ss")}
                         </div>
@@ -213,7 +194,6 @@ const Card = ({ myevents }) => {
         })()}
         {/* <Content/> */}
       </div>
-
       <div className="btn">
         <div className="prev">
           <Button
