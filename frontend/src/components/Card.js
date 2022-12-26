@@ -4,11 +4,9 @@ import { usePagination } from "../hooks/usePagination";
 import { fetchEvents } from "../utils/api";
 import { isPast } from "date-fns";
 
-
-
 // import Moment from "react-moment";
 import moment from "moment";
-import  {DownOutlined,DeleteOutlined } from "@ant-design/icons";
+import { DownOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./Content.css";
 import Content from "./Content";
 import { Button } from "antd";
@@ -56,22 +54,22 @@ const Card = ({ myevents }) => {
 
   // console.log(pastevents);
 
-//delete eventS API
-const deleteEvent=async(id) => {
-  let result = await fetch(`http://localhost:5001/deletedevent/${id}`, {
+  //delete eventS API
+  const deleteEvent = async (id) => {
+    let result = await fetch(`http://localhost:5001/deletedevent/${id}`, {
       method: "Delete",
     });
-    result =await result.json();
+    result = await result.json();
     // if(result){
     //   fetchEvents();
     // }
-    const newData=results.filter((item)=>{
+    const newData = results.filter((item) => {
       // console.log(item)
-      return item._id !==result._id
-    })
+      return item._id !== result._id;
+    });
     setData(newData);
-}
-console.log(data)
+  };
+  console.log(data);
   return (
     <>
       <div className="content-container">
@@ -113,9 +111,9 @@ console.log(data)
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
-                    <DeleteOutlined style={{float:'right'}}/>
+                    <DeleteOutlined style={{ float: "right" }} />
                   </div>
-                
+
                   <div class="card-content">
                     <p>{data.tenantName}</p>
                     <h4>{data.eventName}</h4>
@@ -149,16 +147,17 @@ console.log(data)
             });
           } else {
             return results.map((data, index) => {
-      
               return (
-        
                 <div class="card1" key={index}>
                   <div class="card-image">
                     <img src={data.eventLogo} alt="" />
                     <button type="click" onClick={Publish}>
                       {data.ispublic ? "PUBLISHED" : "UNPUBLISHED"}
                     </button>
-                    <DeleteOutlined style={{float:'right'}} onClick={()=>deleteEvent(data._id)}/>
+                    <DeleteOutlined
+                      style={{ float: "right" }}
+                      onClick={() => deleteEvent(data._id)}
+                    />
                   </div>
                   <div class="card-content">
                     <p>{data.tenantName}</p>
