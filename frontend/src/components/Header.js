@@ -1,7 +1,7 @@
 import './Header.css';
 import { DownOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button ,Dropdown,Space} from 'antd';
 const Header = () => {
 
 
@@ -46,12 +46,18 @@ const Header = () => {
                 <div className='logoname'>
                     vinivia
                 </div>
-
-                <h5 className='dropdown'>MANAGE
-                    <span className='dropdown-icon'>
+                <Dropdown className='dropdown'
+                menu={{
+                    items,
+                }}
+            >
+                <a onClick={(e) => e.preventDefault()}>
+                    <Space>
+                        <h5> MANAGE</h5>
                         <DownOutlined />
-                    </span>
-                </h5>
+                    </Space>
+                </a>
+            </Dropdown>
 
                 {/* <span className='log-btn'>
                     <Link to='/login'>
