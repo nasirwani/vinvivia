@@ -1,0 +1,48 @@
+.manage-roles {
+    width: 80%;
+    margin: 0 auto;
+}
+.manage-roles {
+    font-size: larger;
+}
+.sys-role,
+.roles-search-inp {
+    display: inline-block;
+}
+.sys-role {
+    font-size: smaller;
+}
+.event-btn {
+    margin-left: 20px;
+    padding: 5px;
+    background-color: rgb(202, 92, 110);
+    color: white;
+    font-weight: bolder;
+}
+
+
+.roles-search-inp {
+    float: right;
+    padding: 15px;
+    margin: 5px;
+}
+
+.roles-search-container {
+    padding: 8px;
+    width: 300px;
+    border-radius: 10px;
+    border: 2px solid #eee;
+}
+
+.roles-content {
+    border-bottom: 1px solid rgb(231, 226, 226);
+    /* margin-bottom: 10px; */
+}
+
+.roles-table {
+    margin-top: 100px;
+}
+
+.sys-event-search {
+    margin-bottom: 20px;
+}
