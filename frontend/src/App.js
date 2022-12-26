@@ -58,7 +58,6 @@ function App() {
           handleOnClose={() => setShowDrawer(false)}
         />
       </div>
-    </div>
     
   );
 }
