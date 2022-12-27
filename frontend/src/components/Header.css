@@ -1,65 +1,63 @@
 .header-container {
-    width: 100%;
-    height: 15vh;
-    /* background-color: antiquewhite; */
-    margin-top: 0%;
-    padding-top: 0%;
-    border-bottom: 1px solid rgb(231, 226, 226);
+  width: 100%;
+  height: 15vh;
+  /* background-color: antiquewhite; */
+  margin-top: 0%;
+  padding-top: 0%;
+  border-bottom: 1px solid rgb(231, 226, 226);
 }
 
 .logo img {
-    margin-left: 20px;
-    width: 50px;
-    margin-top: 10px;
-    float: left;
-    /* padding: 20px; */
+  margin-left: 20px;
+  width: 50px;
+  margin-top: 10px;
+  float: left;
+  /* padding: 20px; */
 }
 
 .logoname {
-    float: left;
-    padding-top: 5px;
-    padding-left: 20px;
-    font-size: 40px;
-    font-weight: bold;
+  float: left;
+  padding-top: 5px;
+  padding-left: 20px;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .header-user-info {
-    float: right;
-    display: flex;
-    padding: 20px;
+  float: right;
+  display: flex;
+  padding: 20px;
 }
 
 .user-logo img {
-    border-radius: 50%;
-    width: 35px;
-    margin-right: 15px;
+  border-radius: 50%;
+  width: 35px;
+  margin-right: 15px;
 }
 
 .user-detail {
-    float: left;
+  float: left;
 }
 
 .user-name {
-    font-size: medium;
+  font-size: medium;
 }
 
 .user-email {
-    font-size: smaller;
-    color: grey;
+  font-size: smaller;
+  color: grey;
 }
-
 
 .dropdown {
-    float: left;
-    overflow: hidden;
-    width: 10%;
-    margin-left: 10%;
-    padding: 8px;
-    margin-top: 15px;
+  float: left;
+  overflow: hidden;
+  width: 10%;
+  margin-left: 10%;
+  padding: 8px;
+  margin-top: 15px;
 }
 
-
 .dropdown-icon {
-    margin-left: 5px;
-    color: rgb(216, 50, 50);
+  margin-left: 5px;
+  color: rgb(216, 50, 50);
 }

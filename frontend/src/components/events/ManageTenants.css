@@ -1,31 +1,31 @@
-.manage-tenants{
-    width: 80%;
-    margin: 0 auto;
+.manage-tenants {
+  width: 80%;
+  margin: 0 auto;
 }
 
-
-.tenant-name ,.search-inp{
-    display: inline-block;
-    font-size: larger;
+.tenant-name,
+.search-inp {
+  display: inline-block;
+  font-size: larger;
 }
 
-.search-inp{
-    float: right;
-    padding: 15px;
-    margin: 15px;
+.search-inp {
+  float: right;
+  padding: 15px;
+  margin: 15px;
 }
 
-.search-container{
-    padding: 8px;
-    width:300px;
-    border-radius: 10px;
-    border: 2px solid #eee;
+.search-container {
+  padding: 8px;
+  width: 300px;
+  border-radius: 10px;
+  border: 2px solid #eee;
 }
-.content{
-    border-bottom: 1px solid rgb(231, 226, 226);
-    /* margin-bottom: 10px; */
+.content {
+  border-bottom: 1px solid rgb(231, 226, 226);
+  /* margin-bottom: 10px; */
 }
 
-.table{
-    margin-top: 50px;
+.table {
+  margin-top: 50px;
 }
