@@ -42,12 +42,11 @@ function App() {
           }}
         ></Button>
       </div>
-        <CreateEvent
-          show={showDrawer}
-          handleOnClose={() => setShowDrawer(false)}
-        />
-      </div>
-    
+      <CreateEvent
+        show={showDrawer}
+        handleOnClose={() => setShowDrawer(false)}
+      />
+    </div>
   );
 }
 

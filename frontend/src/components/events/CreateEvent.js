@@ -65,7 +65,7 @@ const CreateEvent = ({ show, handleOnClose, resetFields }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
   const onFinish = async (values) => {
-    // console.log(values, "values");
+    console.log(values, "values");
     //post request to submit database
     let result = await fetch("/createevent", {
       method: "POST",
