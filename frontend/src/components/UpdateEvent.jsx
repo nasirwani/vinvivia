@@ -14,6 +14,9 @@ import { useState, useEffect, Fragment } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { PlusOutlined } from "@ant-design/icons";
 const UpdateEvent = ({ handleOnClose, initialValues }) => {
+  const [form] = Form.useForm();
+  const { Option } = Select;
+  const { RangePicker } = DatePicker;
   const params = useParams();
   const [pic, setPic] = useState("");
   const Navigate = useNavigate();
@@ -43,10 +46,6 @@ const UpdateEvent = ({ handleOnClose, initialValues }) => {
       eventLogo: result.eventLogo,
     });
   };
-  const [form] = Form.useForm();
-
-  const { Option } = Select;
-  const { RangePicker } = DatePicker;
 
   const uploadImage = async (options) => {
     const { file } = options;
@@ -83,7 +82,7 @@ const UpdateEvent = ({ handleOnClose, initialValues }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        eventName: values.eventName,
+        eventName: values?.eventName,
         eventFormat: values.eventFormat,
         tenantName: values.tenantName,
         startDate: values.startDate,
