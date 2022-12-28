@@ -22,6 +22,7 @@ function App() {
       <Header />
       {/* <Content /> */}
       <Card myevents={myevents} />
+
       {/* <Pagination defaultCurrent={1} total={50} /> */}
       <div style={{ width: "100%" }}>
         <Button
